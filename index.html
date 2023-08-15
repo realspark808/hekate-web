@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hekate Online Launcher</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add custom styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    h4 {
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: square;
+    }
+
+    .centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #goButton {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #29abe0;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #goButton:hover {
+      background-color: #1f8ab6;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      padding: 5px;
+      border: 1px solid #ddd;
+      resize: vertical;
+    }
+
+    .button-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #kofi-widget {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Hekate Online Launcher</h1>
+  <div class="container">
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Put the Switch in RCM mode and connect it to your device.</li>
+      <li>Press the 'Load Hekate' button.</li>
+      <li>On the consent screen that appears, select 'APX' and hit confirm.</li>
+      <li>If all goes well, the payload will launch!</li>
+    </ol>
+
+    <h4>FAQ:</h4>
+    <ul>
+      <li>This does NOT work on Windows due to a limitation in the Chrome implementation of WebUSB (and probably other
+        reasons!)
+      <li>This should work on Chrome, Edge, Samsung Internet, and Opera. Make sure you have the latest versions of the
+        browser.</li>
+      <li>This thing is possible due to WebUSB.</li>
+      <li>On Linux, you might get an access denied error! If you do, you can try creating a file at
+        <code>/etc/udev/rules.d/50-switch.rules</code>
+        <div>With the following contents:</div>
+        <div><code>SUBSYSTEM=="usb", ATTR{idVendor}=="0955", MODE="0664", GROUP="plugdev"</code></div>
+      </li>
+      <li>This has been tested and appears to work on Linux, OSX, Android (unrooted), and Chromebooks. Your mileage
+        may vary.</li>
+    </ul>
+    <div class="centered">
+      <button id="goButton"
+        onclick="document.querySelector('#hekate\\.bin').click(); document.querySelector('#goButton').click();">Load
+        Hekate</button>
+      <div style="display:none;">
+        <form id="mainForm">
+          <input type="radio" name="payload" id="hekate.bin" value="hekate.bin" checked>
+        </form>
+      </div>
+    </div>
+
+    <h3>Result:</h3>
+    <textarea id="output"></textarea>
+
+    <!-- Ko-fi Button -->
+    <div id="kofi-widget" class="centered">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+      <script type="text/javascript">
+        kofiwidget2.init('Support @dominatorul on Ko-fi', '#29abe0', 'R5R2N31VW');
+        kofiwidget2.draw();
+      </script>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+  <script src="./script.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAalbdWsgzGjq6ZBCtLNUA8kAGQGWCCx-Y",
+    authDomain: "hekate-nx.firebaseapp.com",
+    projectId: "hekate-nx",
+    storageBucket: "hekate-nx.appspot.com",
+    messagingSenderId: "826452430713",
+    appId: "1:826452430713:web:e81ffe28822429cfdca9a8",
+    measurementId: "G-JPE630G5R9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+
+
+
+</html>
